@@ -1,0 +1,30 @@
+{
+  "name": "koa-rest",
+  "version": "1.0.0",
+  "description": "koa restful framework",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "node index.js",
+    "lint": "eslint -c .eslintrc *.js --fix"
+  },
+  "keywords": [],
+  "author": "Dobility",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2"
+  },
+  "dependencies": {
+    "koa": "^2.8.1",
+    "koa-bodyparser": "^4.2.1",
+    "koa-onerror": "^4.1.0",
+    "koa-router": "^7.4.0",
+    "log4js": "^5.1.0"
+  }
+}
