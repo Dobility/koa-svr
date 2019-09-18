@@ -7,11 +7,11 @@ class UserController {
     console.log(name, pwd);
 
     // do something
-
     ctx.body = {
       status: true,
       token: '123',
     };
+    next();
   }
 
   // 用户信息
@@ -27,6 +27,7 @@ class UserController {
       status: true,
       data,
     };
+    next();
   }
 }
 

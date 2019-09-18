@@ -1,8 +1,9 @@
-import router from 'koa-router';
+import Router from 'koa-router';
 import user from '../controllers/user/userController';
 
-router()
-  .post('/api/user/login', user.login)
-  .get('/api/user/userinfo', user.userInfo);
+const router = new Router();
+router
+  .post('/login', user.login)
+  .get('/userinfo', user.userInfo);
 
-export default router;
+export default router.routes();

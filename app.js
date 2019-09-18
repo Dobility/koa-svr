@@ -1,9 +1,10 @@
 import Koa from 'koa';
 import bodyParser from 'koa-bodyparser';
 import onerror from 'koa-onerror';
+import helmet from 'koa-helmet';
 import { loggerMiddleware } from './middlewares/logger';
+import router from './router';
 import config from './config';
-// import apiRouter from './router';
 
 const app = new Koa();
 
@@ -16,7 +17,12 @@ onerror(app);
 // body parser
 app.use(bodyParser());
 
-// app.use(apiRouter.routes());
+// helmet
+app.use(helmet());
+
+// router
+app.use(router.routes())
+  .use(router.allowedMethods());
 
 // start kit
 app.listen(config.port, () => {

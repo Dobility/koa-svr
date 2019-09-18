@@ -1,6 +1,11 @@
+import fs from 'fs';
 import path from 'path';
 import log4js from 'log4js';
 import config from '../config';
+
+if (!fs.existsSync(config.logPath)) {
+  fs.mkdirSync(config.logPath);
+}
 
 const resolve = (file) => path.resolve(config.logPath, file);
 const year = new Date().getFullYear();
