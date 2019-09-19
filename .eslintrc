@@ -4,12 +4,14 @@
     "es6": true,
     "node": true
   },
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint/eslint-plugin"],
   "extends": ["airbnb-base"],
   "rules": {
-    "no-console": "off",
     "no-plusplus": "off",
     "no-unused-vars": "off",
     "class-methods-use-this": "off",
+    "import/no-unresolved": "off",
     "import/no-extraneous-dependencies": "off",
     "import/prefer-default-export": "off"
   }

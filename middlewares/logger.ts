@@ -7,7 +7,7 @@ if (!fs.existsSync(config.logPath)) {
   fs.mkdirSync(config.logPath);
 }
 
-const resolve = (file) => path.resolve(config.logPath, file);
+const resolve = (file: string) => path.resolve(config.logPath, file);
 const year = new Date().getFullYear();
 
 log4js.configure({
@@ -36,7 +36,7 @@ log4js.configure({
 export const loggerMiddleware = async (ctx, next) => {
   const start = new Date();
   await next();
-  const ms = new Date() - start;
+  const ms = new Date().getTime() - start.getTime();
   const remoteAddress = ctx.headers['x-forwarded-for']
     || ctx.ip
     || ctx.ips
