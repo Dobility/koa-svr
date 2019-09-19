@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run dev",
-    "dev": "nodemon index.js",
+    "dev": "nodemon --inspect index.js",
     "lint": "eslint -c .eslintrc *.js --fix",
     "rmlog": "rm logs/*/* -rf"
   },
