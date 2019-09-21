@@ -1,10 +1,11 @@
-import Router from 'koa-router';
-import userRouter from './userRouter';
-import shopRouter from './shopRouter';
+import { IRouteRule } from '../../interface/route';
+import { routerMiddleWare } from '../../middlewares/router';
+import userRoutes from './userRouter';
+import shopRoutes from './shopRouter';
 
-const router = new Router();
-router.prefix('/api');
-router.use('/user', userRouter);
-router.use('/shop', shopRouter);
+const rules: Array<IRouteRule> = [
+  { prefix: '/user', routes: userRoutes },
+  { prefix: '/shop', routes: shopRoutes },
+];
 
-export default router;
+export default routerMiddleWare(rules);

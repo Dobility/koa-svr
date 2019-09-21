@@ -1,34 +1,16 @@
-class UserController {
-  // 用户登录
-  async login(ctx, next) {
-    // 获取请求提交的数据
-    const name = ctx.request.body.name || '';
-    const pwd = ctx.request.body.pwd || '';
-    console.log(name, pwd);
+import { IRouterContext } from 'koa-router';
 
-    // do something
-    ctx.body = {
-      status: true,
-      token: '123',
-    };
-    next();
-  }
+// 用户信息
+export const userInfo = async (ctx: IRouterContext) => {
+  // do something
 
-  // 用户信息
-  async userInfo(ctx, next) {
-    // do something
-
-    // 假设这是请求回来的数据
-    const data = {
-      name: 'jk',
-      age: 25,
-    };
-    ctx.body = {
-      status: true,
-      data,
-    };
-    next();
-  }
-}
-
-export default new UserController();
+  // 假设这是请求回来的数据
+  const data = {
+    name: 'jk',
+    age: 25,
+  };
+  return {
+    status: true,
+    data,
+  };
+};

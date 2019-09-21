@@ -1,9 +1,12 @@
-import Router from 'koa-router';
-import user from '../controllers/user/userController';
+import { IRouteOption } from '../../interface/route';
+import {
+  userController,
+  loginController,
+} from '../controllers/user';
 
-const router = new Router();
-router
-  .post('/login', user.login)
-  .get('/userinfo', user.userInfo);
+const routes: Array<IRouteOption> = [
+  { path: '/login', method: 'post', controller: loginController.login },
+  { path: '/userInfo', method: 'get', controller: userController.userInfo },
+];
 
-export default router.routes();
+export default routes;

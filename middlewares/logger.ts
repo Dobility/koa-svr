@@ -43,7 +43,12 @@ export const loggerMiddleware = async (ctx, next) => {
     || (ctx.socket
       && (ctx.socket.remoteAddress || (ctx.socket.socket && ctx.socket.socket.remoteAddress))
     );
-  const logText = `${ctx.method} ${ctx.status} ${ctx.url} request： ${JSON.stringify(ctx.request.body)} response： ${JSON.stringify(ctx.body || {})} - ${remoteAddress} - ${ms}ms`;
+  const logText = [
+    `${ctx.method} ${ctx.status} ${ctx.url}`,
+    `body: ${JSON.stringify(ctx.request.body || {})}`,
+    `response： ${JSON.stringify(ctx.body || {})}`,
+    `- ${remoteAddress} - ${ms}ms`,
+  ].join(' ');
   log4js.getLogger().info(logText);
 };
 
