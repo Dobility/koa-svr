@@ -155,7 +155,7 @@ tsconfig.json       # typescript编译配置
    }
    ```
 
-7.  增加日志管理模块
+7. 增加日志管理模块
 
    服务端少不了日志，koa 中虽然有 koa-logger 中间件，但是有一个更流行的叫`log4js`
 
