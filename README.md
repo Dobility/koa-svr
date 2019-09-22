@@ -6,16 +6,16 @@ koa2 + typescript + eslint + log4js 构成的无视图层、纯REST-ful的服务
 
 ```python
 .
-config/				# 项目常量配置文件夹
-interface/			# 自定义 ts 接口文件夹
+config/             # 项目常量配置文件夹
+interface/          # 自定义 ts 接口文件夹
 logs/               # 日志输出文件夹，在项目跑起来后才生成，日志按小时为单位生成
-    http/			# 正常访问的日志文件夹（也包括404这些“异常”）
+    http/           # 正常访问的日志文件夹（也包括404这些“异常”）
     error/          # 访问出错日志文件夹
-middlewares/		# 中间件文件夹
-out/				# ts转js的输出文件夹，在项目跑起来才生成
-src/				# 项目业务代码文件夹
-    controller/		# api接口实现文件夹
-    router/			# 路由即api访问方式与路径配置文件夹
+middlewares/        # 中间件文件夹
+out/                # ts转js的输出文件夹，在项目跑起来才生成
+src/                # 项目业务代码文件夹
+    controller/     # api接口实现文件夹
+    router/         # 路由即api访问方式与路径配置文件夹
     app.ts          # 项目入口文件
 .babelrc            # babel配置
 .editorconfig       # 编辑器配置
