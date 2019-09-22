@@ -1,4 +1,8 @@
-export const getUserInfo = async () => ({
-  name: 'jk',
-  age: 25,
-});
+import knex from 'knex';
+import { execQuery } from '../../utils/mysql';
+
+export const getUserInfo = async () => (
+  execQuery('user', (mgr: knex) => (
+    mgr.first().from('user')
+  ))
+);

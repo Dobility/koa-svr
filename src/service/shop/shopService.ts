@@ -1,5 +1,10 @@
-export const getShopById = async (id: number) => [
-  { id: 1, name: 'shopA' },
-  { id: 2, name: 'shopB' },
-  { id: 3, name: 'shopC' },
-].find(s => s.id === id);
+import knex from 'knex';
+import { execQuery } from '../../utils/mysql';
+
+export const getShopById = async (id: number) => (
+  execQuery('shop', (mgr: knex) => (
+    mgr.first()
+      .from('shop')
+      .where({ id })
+  ))
+);

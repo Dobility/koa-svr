@@ -28,11 +28,13 @@
     "eslint": "^6.1.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
+    "mysql": "^2.17.1",
     "nodemon": "^1.19.2",
     "tsc-watch": "^4.0.0",
     "typescript": "^3.6.3"
   },
   "dependencies": {
+    "knex": "^0.19.4",
     "koa": "^2.8.1",
     "koa-bodyparser": "^4.2.1",
     "koa-helmet": "^5.1.0",
