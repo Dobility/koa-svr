@@ -1,5 +1,5 @@
 import { IRouteRule } from '../../interface/route';
-import { routerMiddleWare } from '../../middlewares/router';
+import { routerMiddleWare } from '../../middleware/router';
 import userRoutes from './userRouter';
 import shopRoutes from './shopRouter';
 

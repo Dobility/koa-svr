@@ -4,8 +4,8 @@ import onerror from 'koa-onerror';
 import helmet from 'koa-helmet';
 import router from './router';
 import config from '../config';
-import { loggerMiddleware } from '../middlewares/logger';
-import { responseHandler, errorHandler } from '../middlewares/response';
+import { loggerMiddleware } from '../middleware/logger';
+import { responseHandler, errorHandler } from '../middleware/response';
 
 const app = new Koa();
 

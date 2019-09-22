@@ -9,6 +9,7 @@
   "extends": ["airbnb-base"],
   "rules": {
     "arrow-parens": "off",
+    "no-return-await": "off",
     "no-plusplus": "off",
     "no-unused-vars": "off",
     "class-methods-use-this": "off",

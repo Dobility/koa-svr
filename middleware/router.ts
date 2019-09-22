@@ -2,7 +2,6 @@ import Router from 'koa-router';
 import { IRouteOption, IRouteRule } from '../interface/route';
 import config from '../config';
 
-
 const controllerHandler = (controller: Function) => (
   async (ctx: Router.IRouterContext, next: Function) => {
     ctx.body = await controller(ctx);

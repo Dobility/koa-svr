@@ -1,7 +1,5 @@
 import { IRouteOption } from '../../interface/route';
-import {
-  shopController,
-} from '../controllers/shop';
+import * as shopController from '../controller/shop/shopController';
 
 const routes: Array<IRouteOption> = [
   { controller: shopController.getShop },
