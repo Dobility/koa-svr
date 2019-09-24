@@ -1,6 +1,6 @@
 # koa2 server framework
 
-koa2 + typescript + eslint + log4js 构成的无视图层的纯服务端框架。
+koa2 + typescript + eslint + log4js + mongoose/mongodb 构成的无视图层的纯服务端框架。
 
 本可以用[*koa*-generator](https://www.npmjs.com/package/koa-generator)来快速搭建框架，但得到的框架与期待的结果和使用习惯还是有些差距。所以开始了自己搭建的过程。首先放出基础框架结构，后面再逐步从0展开：
 

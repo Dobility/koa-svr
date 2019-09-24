@@ -18,6 +18,7 @@
     "@types/koa-bodyparser": "^4.3.0",
     "@types/koa-helmet": "^3.1.2",
     "@types/koa-router": "^7.0.42",
+    "@types/mongoose": "^5.5.17",
     "@types/node": "^12.7.5",
     "@typescript-eslint/eslint-plugin": "^2.3.0",
     "@typescript-eslint/parser": "^2.3.0",
@@ -28,6 +29,7 @@
     "eslint": "^6.1.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
+    "mongoose": "^5.7.1",
     "nodemon": "^1.19.2",
     "tsc-watch": "^4.0.0",
     "typescript": "^3.6.3"
@@ -38,6 +40,7 @@
     "koa-helmet": "^5.1.0",
     "koa-onerror": "^4.1.0",
     "koa-router": "^7.4.0",
-    "log4js": "^5.1.0"
+    "log4js": "^5.1.0",
+    "saslprep": "^1.0.3"
   }
 }
