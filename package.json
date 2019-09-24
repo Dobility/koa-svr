@@ -1,7 +1,7 @@
 {
-  "name": "koa-rest",
+  "name": "koa-svr",
   "version": "1.0.0",
-  "description": "koa restful framework",
+  "description": "koa server framework",
   "main": "index.js",
   "scripts": {
     "start": "npm run dev",
