@@ -4,10 +4,10 @@ koa2 + typescript + eslint + log4js 构成的无视图层的纯服务端框架�
 
 ## Branches
 ```
-* master    # 基本框架
+  master    # 基本框架
   mysql     # master + mysql
   mongo     # master + mongo
-  jwt       # master + jwt
+* jwt       # master + jwt
 ```
 
 ## 目录结构
