@@ -2,7 +2,7 @@ import Router from 'koa-router';
 
 declare interface IRouteOption {
   path?: string | RegExp,
-  method?: 'get' | 'post';
+  method?: 'get' | 'post',
   controller: Router.IMiddleware,
 }
 
