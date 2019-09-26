@@ -4,9 +4,9 @@ koa2 + typescript + eslint + log4js + mongoose/mongodb 构成的无视图层的�
 
 ## Branches
 ```
-* master    # 基本框架
+  master    # 基本框架
   mysql     # master + mysql
-  mongo     # master + mongo
+* mongo     # master + mongo
   jwt       # master + jwt
 ```
 
@@ -176,7 +176,40 @@ tsconfig.json       # typescript编译配置
 
    后面我们可以在中间件和业务代码中使用它来输出日志
 
-8. 此外，我们还可以装一些安全工具，比如出错管理 [koa-onerror](https://www.npmjs.com/package/koa-onerror)，Http Header 安全 [koa-helmet](https://www.npmjs.com/package/koa-helmet) 等等。
+8. 增加 mongodb
 
-9. 如果后续还需要其他功能，我们可以在增加例如文件上传功能 koa-multer，登录功能 koa-session 等中间件，数据库连接工具 mysql、knex 等等。
+   mongodb 的安装教程这里就不展开了，记得安装的时候要把 `Install Mongodb Compass` 的选项勾掉，不然2个小时都可能装不完（因为会龟速下载 compass 的安装包），如果需要 compass 则到官网直接下载就行。
 
+   ```shell
+   npm i mongodb -D
+   ```
+
+   建议给 mongodb 设置账户和密码，如果这么做，则需要在项目在增加一个模块才能正常连接数据库：
+
+   ```shell
+   npm i saslprep -S
+   ```
+
+   mongodb 有个很流行的插件叫`mongoose`，比 `koa-mongo` 更好用
+
+   ```shell
+   npm i mongoose @types/mongoose -D
+   ```
+
+   然后我们可以增加数据库连接配置
+
+   ```
+   .
+   config/
+       db.ts       # 数据库地址、账户密码配置
+       index.ts    # 通过 index 来收拢数据库配置
+   ```
+
+   然后连接方式可以参考 src/utils/mongo.ts。如果配置数据库密码，这里有个注意点是**网上很多文章都漏掉的**：
+
+   ```js
+   const url = `mongodb://${user}:${password}@${host}:${port}/${database}?authSource=admin`;
+   // 这里要加上 authSource，因为数据库密码是配置在 admin 表中，需要制定授权源
+   ```
+
+9. 此外，我们还可以装一些安全工具，比如出错管理 [koa-onerror](https://www.npmjs.com/package/koa-onerror)，Http Header 安全 [koa-helmet](https://www.npmjs.com/package/koa-helmet) 等等。
