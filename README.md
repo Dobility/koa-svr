@@ -1,11 +1,11 @@
-# koa2 REST-ful framework
+# koa2 server framework
 
 koa2 + typescript + eslint + log4js + knex/mysql 构成的纯服务端框架。
 
 ## Branches
 ```
-* master    # 基本框架
-  mysql     # master + mysql
+  master    # 基本框架
+* mysql     # master + mysql
   mongo     # master + mongo
   jwt       # master + jwt
 ```
@@ -176,7 +176,27 @@ tsconfig.json       # typescript编译配置
 
    后面我们可以在中间件和业务代码中使用它来输出日志
 
-8. 此外，我们还可以装一些安全工具，比如出错管理 [koa-onerror](https://www.npmjs.com/package/koa-onerror)，Http Header 安全 [koa-helmet](https://www.npmjs.com/package/koa-helmet) 等等。
+8. 增加 mysql
 
-9. 如果后续还需要其他功能，我们可以在增加例如文件上传功能 koa-multer，登录功能 koa-session 等中间件，数据库连接工具 mysql、knex 等等。
+   ```shell
+   npm i mysql -D
+   ```
 
+   同时推荐一个关系数据库的模块 [knex](http://knexjs.org/)，用它可以让你操作数据库事半功倍
+
+   ```shell
+   npm i knex -S
+   ```
+
+   进行数据库的连接配置，主要包括数据库地址、用户名密码
+
+   ```
+   .
+   config/
+       db.ts        # 增加数据库配置项
+       index.ts     # 将数据库配置收拢到 index 中
+   ```
+
+   然后连接方式可以参考 src/utils/mysql.ts
+
+9. 此外，我们还可以装一些安全工具，比如出错管理 [koa-onerror](https://www.npmjs.com/package/koa-onerror)，Http Header 安全 [koa-helmet](https://www.npmjs.com/package/koa-helmet) 等等。
