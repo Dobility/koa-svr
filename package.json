@@ -2,9 +2,9 @@
   "name": "koa-svr",
   "version": "1.0.0",
   "description": "koa server framework",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
-    "start": "npm run dev",
+    "start": "tsc-watch --onSuccess \"nodemon out/index.js\"",
     "dev": "tsc-watch --onSuccess \"nodemon --inspect out/index.js\"",
     "deploy": "git pull && tsc && nodemon out/index.js",
     "lint": "eslint -c .eslintrc **/*.ts --fix",

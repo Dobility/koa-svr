@@ -2,7 +2,17 @@
 
 koa2 + typescript + eslint + log4js + mongoose/mongodb 构成的无视图层的纯服务端框架。
 
-本可以用[*koa*-generator](https://www.npmjs.com/package/koa-generator)来快速搭建框架，但得到的框架与期待的结果和使用习惯还是有些差距。所以开始了自己搭建的过程。首先放出基础框架结构，后面再逐步从0展开：
+## Branches
+```
+* master    # 基本框架
+  mysql     # master + mysql
+  mongo     # master + mongo
+  jwt       # master + jwt
+```
+
+## 目录结构
+
+本可以用[koa-generator](https://www.npmjs.com/package/koa-generator)来快速搭建框架，但得到的框架与期待的结果和使用习惯还是有些差距。所以开始了自己搭建的过程。首先放出基础框架结构，后面再逐步从0展开：
 
 ```python
 .
@@ -54,7 +64,7 @@ tsconfig.json       # typescript编译配置
    .
    .editorconfig    # 编辑器代码格式配置
    .gitignore       # git忽略文件与文件夹
-   .gitattributes   # 配置 git 换行符风格，以免 windows 下在 git 处理后会自动编程 CRLF
+   .gitattributes   # 配置 git 换行符风格，以免 windows 下在 git 处理后会自动变成 CRLF
    ```
 
 3. 让项目支持 import/export 
