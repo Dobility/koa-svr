@@ -5,6 +5,7 @@ import helmet from 'koa-helmet';
 import router from './router';
 import config from '../config';
 import { loggerMiddleware } from '../middleware/logger';
+import { jwtMiddleware } from '../middleware/jwt';
 import { responseHandler, errorHandler } from '../middleware/response';
 
 const app = new Koa();
@@ -18,6 +19,9 @@ app.use(errorHandler);
 
 // body parser
 app.use(bodyParser());
+
+// jwt
+app.use(jwtMiddleware);
 
 // helmet
 app.use(helmet());

@@ -1,21 +1,28 @@
 import Router from 'koa-router';
+import jwt from 'koa-jwt';
 import { IRouteOption, IRouteRule } from '../interface/route';
 import config from '../config';
 
 const controllerHandler = (controller: Function) => (
   async (ctx: Router.IRouterContext, next: Function) => {
     ctx.body = await controller(ctx);
-    next();
+    await next();
   }
 );
 
 const routerHandler = (routes: Array<IRouteOption>) => {
   let router = new Router();
   routes.forEach(route => {
-    router = router[route.method || 'get'](
-      route.path || `/${route.controller.name}`,
-      controllerHandler(route.controller),
-    );
+    router = route.auth
+      ? router[route.method || 'get'](
+        route.path || `/${route.controller.name}`,
+        jwt({ secret: config.jwtSecret }),
+        controllerHandler(route.controller),
+      )
+      : router[route.method || 'get'](
+        route.path || `/${route.controller.name}`,
+        controllerHandler(route.controller),
+      );
   });
   return router.routes();
 };

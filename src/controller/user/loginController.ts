@@ -1,16 +1,16 @@
-// 用户登录
 import { IRouterContext } from 'koa-router';
+import { checkLogin } from '../../service/user/loginService';
+import { generateToken } from '../../utils/token';
 
 export const login = async (ctx: IRouterContext) => {
-  // 获取请求提交的数据
-  const name = ctx.request.body.name || '';
-  const pwd = ctx.request.body.pwd || '';
-
-  // do something
-  return {
-    status: true,
-    token: '123',
-    name,
-    pwd,
-  };
+  const { name = '', pwd = '' } = ctx.request.body || {};
+  if (await checkLogin(name, pwd)) {
+    // 更新token
+    const token = generateToken(name, '20s');
+    return {
+      status: true,
+      token,
+    };
+  }
+  throw { code: 200, success: false, message: '用户名密码错误' };
 };

@@ -4,7 +4,7 @@ import * as loginController from '../controller/user/loginController';
 
 const routes: Array<IRouteOption> = [
   { path: '/login', method: 'post', controller: loginController.login },
-  { path: '/userInfo', method: 'get', controller: userController.userInfo },
+  { path: '/userInfo', auth: true, controller: userController.userInfo },
 ];
 
 export default routes;

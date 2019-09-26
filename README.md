@@ -166,7 +166,54 @@ tsconfig.json       # typescript编译配置
 
    后面我们可以在中间件和业务代码中使用它来输出日志
 
-8. 此外，我们还可以装一些安全工具，比如出错管理 [koa-onerror](https://www.npmjs.com/package/koa-onerror)，Http Header 安全 [koa-helmet](https://www.npmjs.com/package/koa-helmet) 等等。
+8. 增加 jwt 验证用户权限模块
 
-9. 如果后续还需要其他功能，我们可以在增加例如文件上传功能 koa-multer，登录功能 koa-session 等中间件，数据库连接工具 mysql、knex 等等。
+   一般来说，我们可以用 session 或者 token 来实现用户登录以控制访问权限，本框架中使用的是 token 的方式，借助 包含了 [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) 模块的 [koa-jwt](https://github.com/koajs/jwt)
+
+   ```shell
+   npm i koa-jwt -S
+   npm i @types/jsonwebtoken -D
+   ```
+
+   koa-jwt 主要用在 router，同时还需要直接用 jsonwebtoken 来做 token 的生成和验证：
+
+   (1) 需要控制权限的 router 的配置
+
+   ```js
+   import jwt from 'koa-jwt';
+   // 需要token验证的路由，第二个参数传入koa-jwt
+   router.get('/path', jwt({ secret: 'secret' }), controller)
+   ```
+
+   (2) 生成 token 的方式
+
+   ```js
+   import jwt from 'jsonwebtoken';
+   export const generateToken(data, exp) {
+       // data 为 token 对应要保存的内容（如用户信息），exp 表示 token 有效期
+       return jwt.sign({ data }, 'secret', { expiresIn: exp })
+   }
+   ```
+
+   (3) 增加 jwt 中间件进行验证
+
+   ```js
+   // 在 app.ts 入口文件中增加
+   const jwtMiddleware = async (ctx, next) => {
+     try {
+       const token = ctx.request.headers.authorization;
+       if (token) {
+         ctx.jwtData = jwt.verify(token.slice(7), config.jwtSecret);
+       }
+     } catch (e) {
+       throw { code: 401, message: e.message };
+     }
+     await next();
+   }
+   app.use(jwtMiddleware)
+   ```
+
+9. 此外，我们还可以装一些安全工具，比如出错管理 [koa-onerror](https://www.npmjs.com/package/koa-onerror)，Http Header 安全 [koa-helmet](https://www.npmjs.com/package/koa-helmet) 等等。
+
+10. 如果后续还需要其他功能，我们可以在增加例如文件上传功能 koa-multer，登录功能 koa-session 等中间件，数据库连接工具 mysql、knex 等等。
 
