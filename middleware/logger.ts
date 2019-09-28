@@ -31,6 +31,8 @@ log4js.configure({
     error: { appenders: ['error', 'console'], level: 'error' },
     default: { appenders: ['http', 'console'], level: 'info' },
   },
+  pm2: true,
+  pm2InstanceVar: 'INSTANCE_ID',
 });
 
 export const loggerMiddleware = async (ctx, next) => {
