@@ -176,7 +176,36 @@ tsconfig.json       # typescript编译配置
 
    后面我们可以在中间件和业务代码中使用它来输出日志
 
-8. 此外，我们还可以装一些安全工具，比如出错管理 [koa-onerror](https://www.npmjs.com/package/koa-onerror)，Http Header 安全 [koa-helmet](https://www.npmjs.com/package/koa-helmet) 等等。
+8. 服务端使用 pm2 启动项目
 
-9. 如果后续还需要其他功能，我们可以在增加例如文件上传功能 koa-multer，登录功能 koa-session 等中间件，数据库连接工具 mysql、knex 等等。
+   我们本地开发的时候可以用 node/nodemon 来启动项目和实现热更新，不过它们都是属于前台运行的，进程容易被关闭，而且也不利于进程监控等。[pm2](http://pm2.keymetrics.io/) 是一个更合适在服务端运行项目的替代品，详情自行搜索了解。
+
+   不过 pm2 和 log4js 同时使用可能有一些问题，比如[cluster集群模式下的日志读写问题](https://www.jianshu.com/p/20fcb3672723)；再比如它们都会写日志，那么相同的日志就会写在两个文件，造成冗余，但 log4js 在日志管理方面更甚一筹，pm2 又是服务端的一大利器，所以只能任其共存，定期清理日志。
+
+   安装和配置：
+
+   ```shell
+   npm i pm2 -g     # 或者 npm i pm2 -D
+   pm2 ecosystem    # 生成 pm2 配置文件，默认为 ecosystem.config.js，本项目中改成 pm2.config.js
+   ```
+
+   在 log4js 的配置中（/middleware/logger.ts）增加配置：
+
+   ```js
+   log4js.configure({
+     // ...
+     pm2: true,
+     pm2InstanceVar: 'INSTANCE_ID',
+   })
+   ```
+
+   通过下面脚本就可以启动了（将会是在后台创建进程服务）：
+
+   ```shell
+   pm2 start pm2.config.js
+   ```
+
+9. 此外，我们还可以装一些安全工具，比如出错管理 [koa-onerror](https://www.npmjs.com/package/koa-onerror)，Http Header 安全 [koa-helmet](https://www.npmjs.com/package/koa-helmet) 等等。
+
+10. 如果后续还需要其他功能，我们可以在增加例如文件上传功能 koa-multer，登录功能 koa-session 等中间件，数据库连接工具 mysql、knex 等等。
 
