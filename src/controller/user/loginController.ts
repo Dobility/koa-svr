@@ -3,7 +3,7 @@ import { checkLogin } from '../../service/user/loginService';
 import { generateToken } from '../../utils/token';
 
 export const login = async (ctx: IRouterContext) => {
-  const { name = '', pwd = '' } = ctx.request.body || {};
+  const { name = '', pwd = '' } = ctx.getParams();
   if (await checkLogin(name, pwd)) {
     // 更新token
     const token = generateToken(name, '20s');
